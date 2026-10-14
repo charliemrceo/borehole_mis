@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Plot;
 use Illuminate\Http\Request;
 
 class PlotController extends Controller
@@ -9,11 +9,11 @@ class PlotController extends Controller
     public function createPlot(Request $request){
         $validated = $request->validate([
         'name' =>'required|string|unique:plots,name',
-        'longtitude' =>'required|string',
+        'longitude' =>'required|string',
         'latitude' =>'required|string',
         'water_rate' =>'required|numeric|min:0|decimal:0,2',//no validate double in laravel
         'meter_number' =>'required|string|unique:plots,meter_number',
-        'location_id' =>'required|interger|exists:locations,id'
+        'location_id' =>'required|integer|exists:locations,id'
         ]);
 
         $plot= new Plot();
@@ -72,12 +72,12 @@ class PlotController extends Controller
 
     public function updatePlot($id, Request $request){
          $validated = $request->validate([
-        'name' =>'required|string|unique:plots,name',
-        'longtitude' =>'required|string',
+        'name' =>'required|string',
+        'longitude' =>'required|string',
         'latitude' =>'required|string',
         'water_rate' =>'required|numeric|min:0|decimal:0,2',
-        'meter_number' =>'required|string|unique:plots,meter_number',
-        'location_id' =>'required|interger|exists:locations,id'
+        'meter_number' =>'required|string',
+        'location_id' =>'required|integer|exists:locations,id'
         ]);
 
         $plot= Plot::where('id',$id)->first();

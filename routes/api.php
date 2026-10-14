@@ -1,5 +1,6 @@
 <?php
-
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\PlotController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,23 @@ Route::get('/get_plot/{id}', [PlotController::class, 'readPlot']);
 Route::post('/update_plot/{id}', [PlotController::class, 'updatePlot']);
 Route::delete('/delete_plot/{id}', [PlotController::class, 'deletePlot']);
 Route::get('/search_plot/{name}', [PlotController::class, 'searchPlot']);
+
+Route::post('/save_billing', [BillingController::class, 'createBilling']);
+Route::get('/get_billings', [BillingController::class, 'readAllBilling']);
+Route::get('/get_billing/{id}', [BillingController::class, 'readBilling']);
+Route::post('/update_billing/{id}', [BillingController::class, 'updateBilling']);
+Route::delete('/delete_billing/{id}', [BillingController::class, 'deleteBilling']);
+Route::get('/search_billing/{name}', [BillingController::class, 'searchBilling']);
+
+
+Route::post('/save_payment', [PaymentController::class, 'createPayment']);
+Route::get('/get_payments', [PaymentController::class, 'readAllPayment']);
+Route::get('/get__payment/{id}', [PaymentController::class, 'readPayment']);
+Route::post('/update__payment/{id}', [PaymentController::class, 'updatePayment']);
+Route::delete('/delete__payment/{id}', [PaymentController::class, 'deletePayment']);
+Route::get('/search__payment/{name}', [PaymentController::class, 'searchPayment']);
+
+
 
 Route::get('/user', function (Request $request) {
     return $request->user();
